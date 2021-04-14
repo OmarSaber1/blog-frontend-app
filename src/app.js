@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Navbar from './components/navbar/nav';
-class App extends Component {
-    state = {  }
-    render() { 
-        return ( 
-            <div >
-               <Navbar/>
-            </div>
-         );
-    }
+import Posts from './components/posts/posts';
+const App = () => {
+    return ( 
+        <div>
+            <Navbar/>
+            <Posts/>
+        </div>
+     );
 }
  
 export default App;
