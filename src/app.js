@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import Navbar from './components/navbar/nav';
 class App extends Component {
     state = {  }
     render() { 
         return ( 
-            <h1>Bloger</h1>
+            <div >
+               <Navbar/>
+            </div>
          );
     }
 }
