@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Post from "../post/post";
-import {Route} from'react-router-dom'
+import { Link, Route } from "react-router-dom";
+import Navbar from "../navbar/nav";
+import AddPost from "../addPost/addpost";
 
-const Posts = () => {
+const Posts = (props) => {
   let [{ postsState }, postsSetState] = useState({
     postsState: [],
   });
@@ -12,9 +14,8 @@ const Posts = () => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
       .then((posts) => {
-        const postsSlice = posts.data.slice(0, 10);
+        const postsSlice = posts.data.slice(0, 4);
         postsSetState({ postsState: postsSlice });
-        console.log(postsState, typeof postsState);
       })
       .then((el) => console.log(postsState))
       .catch((err) => {
@@ -23,12 +24,18 @@ const Posts = () => {
   }, []);
 
   return (
-    <div>
-        <Route  path="/posts" render={()=> <h2>Hello /posts</h2>}/>
-        <Route exact path="/" render={()=> <h1>Hello route</h1>}/>
+    <div className="mx-auto">
       {postsState ? (
         postsState.map((post) => (
-          <Post key={post.id} title={post.title} body={post.body} />
+          <Link to={"/" + post.id}
+          key={post.id}
+          >
+            <Post
+              title={post.title}
+              body={post.body}
+              id={post.id}
+            />
+          </Link>
         ))
       ) : (
         <p>Not thing to show</p>
