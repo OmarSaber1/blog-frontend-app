@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Post from "../post/post";
 import { Link, Route } from "react-router-dom";
-import Navbar from "../navbar/nav";
-import AddPost from "../addPost/addpost";
+import FullPost from "../fullPost/fullpost";
 
 const Posts = (props) => {
   let [{ postsState }, postsSetState] = useState({
@@ -11,6 +10,7 @@ const Posts = (props) => {
   });
 
   useEffect(() => {
+
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
       .then((posts) => {
@@ -40,7 +40,7 @@ const Posts = (props) => {
       ) : (
         <p>Not thing to show</p>
       )}
-      {console.log(postsState)}
+      <Route exact path="/:id" component={FullPost} />
     </div>
   );
 };
